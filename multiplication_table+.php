@@ -7,23 +7,29 @@
         td { border: 1px solid #ccc; padding: 5px; width: 30px; text-align: center}
         th { border: 1px solid #ccc; padding: 5px; width: 30px; background-color: #34495e; color: white}
         .diagonal {background-color: #ebf5fb}
+        button { border 2px; padding: 5px}
     </style>
 </head>
 <body>
         <form>
-        <input type="number" name="size" value="<?= $size ?? 10 ?>" min="1" max"100">
+        <p>X: <input type="number" name="sizeX" value="<?= $sizeX ?? 10 ?>" min="1" max"100"></p>
+        <p>Y:  <input type="number" name="sizeY" value="<?= $sizeY ?? 10 ?>" min="1" max"100"></p>
         <button type="submit">Создать</button>
         </form>
 
 <?php
-$size = min($_GET['size'], 100);
-if ($size < 1)
-        $size = 1;
+$sizeX = min($_GET['sizeX'], 100);
+if ($sizeX < 1)
+        $sizeX = 1;
+$sizeY = min($_GET['sizeY'], 100);
+if ($sizeY < 1)
+        $sizeY = 1;
+
 
 echo '<table>';
-for ($i = 1; $i <= $size; $i++){
+for ($i = 1; $i <= $sizeY; $i++){
         echo '<tr>';
-        for ($j = 1; $j<= $size; $j++){
+        for ($j = 1; $j<= $sizeX; $j++){
                 if ($i === 1 and $j===1){
                         echo '<th>' . ' ' . '</th>';
                 }
@@ -45,4 +51,3 @@ echo '</table>';
 
 </body>
 </html>
-~        
