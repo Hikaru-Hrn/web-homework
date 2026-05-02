@@ -52,12 +52,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($errors)) {
         $data = [
             date("Y-m-d H:i:s"),
-            htmlspecialchars($_POST["first_name"]),
-            htmlspecialchars($_POST["last_name"]),
-            htmlspecialchars($_POST["email"]),
-            htmlspecialchars($_POST["phone_number"]),
-            htmlspecialchars($_POST["topic"]),
-            htmlspecialchars($_POST["payment"]),
+            $_POST["first_name"],
+            $_POST["last_name"],
+            $_POST["email"],
+            $_POST["phone_number"],
+            $_POST["topic"],
+            $_POST["payment"],
             isset($_POST["subscribe"]) ? "Да" : "Нет",
         ];
         $file_name = "request.csv";
@@ -94,11 +94,111 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>My Server Lab</title>
     <meta charset='utf-8'>
     <meta name='viewport' content="width=device-width, initial-scale=1">
+
+
     <style>
-        .error { color: red; }
-        .success { color: green; font-weight: bold; }
-        .form_fields { margin: 5px}
-    </style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f7f6;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 20px;
+            }
+
+            form {
+                background: #fff;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                max-width: 450px;
+                width: 100%;
+            }
+
+            .form_fields {
+                width: 100%;
+                padding: 10px;
+                margin: 8px 0 20px 0;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+
+            .form_fields:focus {
+                border-color: #4A90E2;
+                outline: none;
+                box-shadow: 0 0 5px rgba(74,144,226,0.3);
+            }
+
+            label {
+                font-weight: 600;
+                font-size: 14px;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            /* Стилизация радио-кнопок и чекбоксов */
+            .conference_topics, .payment_method {
+                background: #f9f9f9;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+            }
+
+            .conference_topics div, .payment_method div {
+                margin-bottom: 8px;
+            }
+
+            input[type="radio"], input[type="checkbox"] {
+                margin-right: 10px;
+                cursor: pointer;
+            }
+
+            /* Кнопка */
+            button {
+                width: 100%;
+                padding: 12px;
+                background-color: #4A90E2;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #357ABD;
+            }
+
+            /* Уведомления */
+            .error {
+                background: #ffebee;
+                color: #c62828;
+                padding: 15px;
+                border-radius: 8px;
+                list-style: none;
+                max-width: 450px;
+                width: 100%;
+                margin-bottom: 20px;
+                border: 1px solid #ffcdd2;
+            }
+
+            .success {
+                background: #e8f5e9;
+                color: #2e7d32;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                max-width: 450px;
+                width: 100%;
+                margin-bottom: 20px;
+                border: 1px solid #c8e6c9;
+            }
+        </style>
 </head>
 <body>
 
@@ -177,7 +277,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $_POST["topic"] === "ad_and_marketing"
                         ? "checked"
                         : "" ?>>
-                <label for="topic_ad_and_marketing">Бизнес</label>
+                <label for="topic_ad_and_marketing">Реклама и маркетинг</label>
             </div>
         </div>
 
